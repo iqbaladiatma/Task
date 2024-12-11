@@ -9,6 +9,7 @@
         <div class="card-body">
           <form action="{{ route('tasks.store') }}" method="POST">
             @csrf
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>

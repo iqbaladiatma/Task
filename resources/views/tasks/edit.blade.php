@@ -40,7 +40,7 @@
 
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-warning">Update Task</button>
-              <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Kembali</a>
+              <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Back</a>
             </div>
           </form>
         </div>

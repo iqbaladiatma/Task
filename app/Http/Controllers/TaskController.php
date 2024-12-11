@@ -17,6 +17,15 @@ class TaskController extends Controller
             ->orderBy('updated_at', 'desc')
             ->get();
 
+        // Return JSON jika request dari API
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Task berhasil diambil',
+                'data' => $tasks
+            ]);
+        }
+
         return view('tasks.todo', compact('tasks'));
     }
 
@@ -33,7 +42,16 @@ class TaskController extends Controller
             'status' => 'required|in:pending,in_progress,completed',
         ]);
 
-        Task::create($validated);
+        $task = Task::create($validated);
+
+        // Return JSON jika request dari API
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Task berhasil ditambahkan',
+                'data' => $task
+            ], 201);
+        }
 
         return redirect()->route('tasks.index')
             ->with('success', 'Task berhasil ditambahkan');
@@ -54,6 +72,15 @@ class TaskController extends Controller
 
         $task->update($validated);
 
+        // Return JSON jika request dari API
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Task berhasil diupdate',
+                'data' => $task
+            ]);
+        }
+
         return redirect()->route('tasks.index')
             ->with('success', 'Task berhasil diupdate');
     }
@@ -61,6 +88,14 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
+
+        // Return JSON jika request dari API
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Task berhasil dihapus'
+            ]);
+        }
 
         return redirect()->route('tasks.index')
             ->with('success', 'Task berhasil dihapus');

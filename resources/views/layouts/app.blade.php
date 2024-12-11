@@ -7,6 +7,8 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="rQhhlZ0X1ZIKXYYtJMDXMCuL6pJ2EIutTWKNgUcn">
 
   <title>{{ config('app.name', 'Todo App') }}</title>
 
